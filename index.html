@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>ProxyParser [hideme.ru]</title>
+    <script src="libs/jquery-3.1.0.min.js"></script>
+  </head>
+  <body align="center">
+    <button id="proxyparse" name="proxyparse" class="proxyparse">PARSE</button>
+    <script language="javascript" type="text/javascript">
+    $('#proxyparse').click( function() {
+      $.ajax({
+        //type: 'POST',
+        url: 'response.php?action=parse',
+        //data: 'name=Andrew&nickname=Aramis',
+          beforeSend:function() {
+            $(":submit").attr("disabled", true);
+            $("#result").html("<center><img src='libs/ajax-loader.gif'></br></br>Загрузка...</center>");},
+          success: function(data){
+            $(":submit").attr("disabled", false);
+            $('#result').html(data);
+          }
+      });
+    });
+    </script>
+    <div id="result" name="result" align="center"></div>
+  </body>
+</html>
